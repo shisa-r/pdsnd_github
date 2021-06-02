@@ -66,6 +66,7 @@ The project output provides information regarding computed statistics and detail
     * earliest, most recent, most common year of birth (only available for NYC and Chicago)
 
 5. Sample of data from csv file
+
 ---
 
 ## Author Info
@@ -76,3 +77,13 @@ The project output provides information regarding computed statistics and detail
 ## Credits
 - [Udacity's Programming for Data Science with Python Nanodegree Program](https://www.udacity.com/course/programming-for-data-science-nanodegree--nd104)
 - [Upstream Repository](https://github.com/udacity/pdsnd_github)
+
+---
+
+## Updates & Revisions Logs
+|No.|Date      |Comments                   
+|:-:|:--------:|--------
+|1  |2-Jun-2021|Initial version
+|2  |2-Jun-2021|Add table of contents
+|3  |2-Jun-2021|Update markdown elements
+|4  |2-Jun-2021|Add update & revisions logs
