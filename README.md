@@ -1,6 +1,14 @@
-#### June 2,2021
+#### June 2, 2021
 
 # Project: Explore US Bikeshare Data
+
+## Table of Contents
+- [Description](#description)
+- [Data Files](#data-Files)
+- [Datasets](#datasets)
+- [Outputs](#outputs)
+- [Author Info](#author-info)
+- [Credits](#credits)
 
 ## Description
 This project is part of Udacity's Programming for Data Science with Python Nanodegree Prgram - Introduction to Python course. It is designed to use python to explore data related to bike share systems for three major cities in the United States: Chicago, New York City, and Washington.
@@ -26,7 +34,7 @@ The Chicago and New York City files also have the following two columns:
 * Gender
 * Birth Year
 
-## Sections
+## Outputs
 
 The project output provides information regarding computed statistics and details namely:
 
