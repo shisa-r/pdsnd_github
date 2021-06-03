@@ -92,7 +92,9 @@ def time_stats(df):
     print('Most Common Day of Travel:',df.dayname.mode()[0])
     print('Most Common Start Hour of Travel:', df['hour'].mode()[0])
 
-    print("\nThis took %s seconds" % (time.time() - start_time))
+    t = round((time.time() - start_time),2)
+
+    print("\nThis took %s seconds" % t)
     print('-'*40)
 
 def station_stats(df):
@@ -113,7 +115,9 @@ def station_stats(df):
     print('Most Common Trip:',df.trip.mode()[0])
     print('Total counts: ',df.trip.value_counts()[df.trip.mode()][0])
 
-    print("\nThis took %s seconds" % (time.time() - start_time))
+    t = round((time.time() - start_time),2)
+
+    print("\nThis took %s seconds" % t)
     print('-'*40)
 
 def trip_duration_stats(df):
@@ -124,10 +128,12 @@ def trip_duration_stats(df):
 
     # display total travel time
     # display mean travel time
-    print('Total Travel Time: ',df['Trip Duration'].sum())
-    print('Average Travel Time: ',df['Trip Duration'].mean())
+    print('Total Travel Time: ',df['Trip Duration'].sum().round(2),'seconds')
+    print('Average Travel Time: ',round(df['Trip Duration'].mean(),2),'seconds')
 
-    print("\nThis took %s seconds" % (time.time() - start_time))
+    t = round((time.time() - start_time),2)
+
+    print("\nThis took %s seconds" % t)
     print('-'*40)
 
 def user_stats(city, df):
@@ -149,12 +155,34 @@ def user_stats(city, df):
     elif city.lower() == 'washington':
         print("\nPlease note that Gender and Year of Birth data is not available for Washington")
 
-    print("\nThis took %s seconds" % (time.time() - start_time))
+    t = round((time.time() - start_time),2)
+
+    print("\nThis took %s seconds" % t)
     print('-'*40)
 
+def sample_data(df):
+    sample = 'yes'
+    while sample.lower() != 'no':
+        sample = input('\nWould you like to see sample of raw data? Please enter yes or no\n')  
+        if sample.lower() not in ('yes','no'):
+            print('\nSorry!..invalid answer')
+        elif sample.lower() == 'yes':
+            i=5
+            print(df.head(i))
+            while True:
+                sample_more = input('\nWould you like to see more data? Please enter yes or no\n')
+                if sample_more.lower() not in ('yes','no'):
+                    print('\nSorry!..invalid answer')
+                elif sample_more.lower() == 'yes':
+                    print(df[i:i+5])
+                    i+=5
+                elif sample_more.lower() == 'no':
+                    sample = 'no'
+                    break 
 
 def main():
-    while True: 
+    restart = 'yes'
+    while restart == 'yes': 
         city, month, day = get_filters()
         filter_data = load_data(city, month, day)
     
@@ -162,24 +190,18 @@ def main():
         station_stats(filter_data)
         trip_duration_stats(filter_data)
         user_stats(city,filter_data)
+        sample_data(filter_data)
 
-        sample = input('\nWould you like to see sample of raw data? Enter yes or no\n')
-        if sample.lower() == 'yes':
-            i=5
-            print(filter_data.head(i))
-            while True:
-                sample_more = input('Would you like to see more data? enter yes or no\n')
-                if sample_more.lower() == 'yes':
-                    print(filter_data[i:i+5])
-                    i+=5
-                elif sample_more.lower() == 'no':
-                    break
-                else:
-                    print('please enter yes or no.')
-
-        restart = input('\nWould you like to restart? Enter yes or no\n')
-        if restart.lower() != 'yes':
-            break
+        while True:
+            restart = input('\nWould you like to restart? Enter yes or no\n')
+            if restart.lower() not in ('yes','no'):
+                print('\nSorry!..invalid answer')
+            elif restart.lower() == 'yes':
+                restart = 'yes'
+                break
+            elif restart.lower() == 'no':
+                restart = 'no'
+                break
 
 if __name__ == "__main__":
     main()
