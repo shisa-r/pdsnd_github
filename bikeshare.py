@@ -93,7 +93,9 @@ def time_stats(df):
     print('Most Common Day of Travel:',df.dayname.mode()[0])
     print('Most Common Start Hour of Travel:', df['hour'].mode()[0])
 
-    print("\nThis took %s seconds" % (time.time() - start_time))
+    t = round((time.time() - start_time),2)
+
+    print("\nThis took %s seconds" % t)
     print('-'*40)
 
 def station_stats(df):
@@ -114,7 +116,9 @@ def station_stats(df):
     print('Most Common Trip:',df.trip.mode()[0])
     print('Total counts: ',df.trip.value_counts()[df.trip.mode()][0])
 
-    print("\nThis took %s seconds" % (time.time() - start_time))
+    t = round((time.time() - start_time),2)
+
+    print("\nThis took %s seconds" % t)
     print('-'*40)
 
 def trip_duration_stats(df):
@@ -125,10 +129,12 @@ def trip_duration_stats(df):
 
     # display total travel time
     # display mean travel time
-    print('Total Travel Time: ',df['Trip Duration'].sum())
-    print('Average Travel Time: ',df['Trip Duration'].mean())
+    print('Total Travel Time: ',df['Trip Duration'].sum().round(2),'seconds')
+    print('Average Travel Time: ',round(df['Trip Duration'].mean(),2),'seconds')
 
-    print("\nThis took %s seconds" % (time.time() - start_time))
+    t = round((time.time() - start_time),2)
+
+    print("\nThis took %s seconds" % t)
     print('-'*40)
 
 def user_stats(city, df):
@@ -150,7 +156,9 @@ def user_stats(city, df):
     elif city.lower() == 'washington':
         print("\nPlease note that Gender and Year of Birth data is not available for Washington")
 
-    print("\nThis took %s seconds" % (time.time() - start_time))
+    t = round((time.time() - start_time),2)
+
+    print("\nThis took %s seconds" % t)
     print('-'*40)
 
 def sample_data(df):
