@@ -182,7 +182,8 @@ def sample_data(df):
                     break 
 
 def main():
-    while True: 
+    restart = 'yes'
+    while restart == 'yes': 
         city, month, day = get_filters()
         filter_data = load_data(city, month, day)
     
@@ -192,9 +193,16 @@ def main():
         user_stats(city,filter_data)
         sample_data(filter_data)
 
-        restart = input('\nWould you like to restart? Enter yes or no\n')
-        if restart.lower() != 'yes':
-            break
+        while True:
+            restart = input('\nWould you like to restart? Enter yes or no\n')
+            if restart.lower() not in ('yes','no'):
+                print('\nSorry!..invalid answer')
+            elif restart.lower() == 'yes':
+                restart = 'yes'
+                break
+            elif restart.lower() == 'no':
+                restart = 'no'
+                break
 
 if __name__ == "__main__":
     main()
