@@ -153,6 +153,25 @@ def user_stats(city, df):
     print("\nThis took %s seconds" % (time.time() - start_time))
     print('-'*40)
 
+def sample_data(df):
+    sample = 'yes'
+    while sample.lower() != 'no':
+        sample = input('\nWould you like to see sample of raw data? Please enter yes or no\n')  
+        if sample.lower() not in ('yes','no'):
+            print('\nSorry!..invalid answer')
+        elif sample.lower() == 'yes':
+            i=5
+            print(df.head(i))
+            while True:
+                sample_more = input('\nWould you like to see more data? Please enter yes or no\n')
+                if sample_more.lower() not in ('yes','no'):
+                    print('\nSorry!..invalid answer')
+                elif sample_more.lower() == 'yes':
+                    print(df[i:i+5])
+                    i+=5
+                elif sample_more.lower() == 'no':
+                    sample = 'no'
+                    break 
 
 def main():
     while True: 
@@ -163,20 +182,7 @@ def main():
         station_stats(filter_data)
         trip_duration_stats(filter_data)
         user_stats(city,filter_data)
-
-        sample = input('\nWould you like to see sample of raw data? Enter yes or no\n')
-        if sample.lower() == 'yes':
-            i=5
-            print(filter_data.head(i))
-            while True:
-                sample_more = input('Would you like to see more data? enter yes or no\n')
-                if sample_more.lower() == 'yes':
-                    print(filter_data[i:i+5])
-                    i+=5
-                elif sample_more.lower() == 'no':
-                    break
-                else:
-                    print('please enter yes or no.')
+        sample_data(filter_data)
 
         restart = input('\nWould you like to restart? Enter yes or no\n')
         if restart.lower() != 'yes':
